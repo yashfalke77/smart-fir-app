@@ -1,0 +1,16 @@
+.p-accordion .p-accordion-tab .p-accordion-header .p-accordion-header-link {
+    background-color: #fff;
+}
+
+.p-accordion .p-accordion-header:not(.p-disabled).p-highlight .p-accordion-header-link {
+    background-color: #fff;
+}
+
+.p-accordion .p-accordion-header:hover .p-accordion-header-link {
+    background-color: #fff;
+    text-decoration: none;
+}
+
+.p-accordion .p-accordion-header:not(.p-disabled) .p-accordion-header-link:focus {
+    box-shadow: none;
+}

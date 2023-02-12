@@ -1,0 +1,19 @@
+.p-inputtext {
+    width: 100%;
+}
+
+.p-inputtext:enabled:focus {
+    box-shadow: none;
+}
+
+.fir {
+    .p-float-label label {
+        position: absolute;
+        pointer-events: none;
+        top: 32%;
+        margin-top: -0.5rem;
+        transition-property: all;
+        transition-timing-function: ease;
+        line-height: 1;
+    }
+}
