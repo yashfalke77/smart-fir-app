@@ -5,6 +5,7 @@ import Fir from './pages/Fir'
 import Home from './pages/Home'
 import Login from './pages/Login'
 import "primereact/resources/themes/bootstrap4-light-blue/theme.css";
+import Register from './pages/Register'
 
 function App() {
 
@@ -14,6 +15,7 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/file-fir" element={<Fir />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
       </Routes>
     </div>
   )

@@ -1,6 +1,10 @@
-.login {
+.register {
     display: flex;
     height: 45rem;
+
+    &__calender{
+        width: 100%;
+    }
 
     &__left {
         flex: 0 0 40%;
@@ -12,6 +16,10 @@
 
     &__right {
         flex: 1;
+    }
+
+    &__header{
+        margin-top: 3rem;
         display: flex;
         flex-direction: column;
         justify-content: center;
@@ -23,11 +31,12 @@
     }
 
     &__form {
-        width: 25rem;
+        padding: 0rem 3rem;
     }
 
     &__submit {
         display: flex;
         justify-content: center;
+        margin-bottom: 1rem;
     }
 }
