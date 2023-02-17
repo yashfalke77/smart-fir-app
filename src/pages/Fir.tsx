@@ -1,13 +1,14 @@
-import React, { useState } from 'react'
+import React, { FormEventHandler, useState } from 'react'
 import "../styles/fir.scss"
 import { InputText } from 'primereact/inputtext';
-import { InputMask } from 'primereact/inputmask';
+import { InputMask, InputMaskChangeEvent } from 'primereact/inputmask';
 import { InputTextarea } from 'primereact/inputtextarea';
 import { Dropdown } from 'primereact/dropdown';
 import { Checkbox } from 'primereact/checkbox';
 import { Button } from 'primereact/button';
 import Navbar from '../components/Navbar/Navbar';
 import Footer from '../components/Footer/Footer';
+import { Fir } from '../models/fir.model';
 
 const Fir = () => {
 
@@ -25,6 +26,26 @@ const Fir = () => {
         "Bandra"
     ]
 
+    const [fir, setFir] = useState<Fir>({
+        name: "",
+        phone: undefined,
+        email: "",
+        address1: "",
+    })
+
+    const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        setFir({
+            ...fir,
+            [event.target.name]: event.target.value
+        })
+    };
+
+    const handleSubmit = (e: React.FormEvent) => {
+        e.preventDefault();
+        console.log(fir)
+    }
+
+
     return (
         <div>
             <Navbar />
@@ -37,19 +58,19 @@ const Fir = () => {
                     <p>This site shall only entertain complaints about minor crimes (′non-cognizable crimes′).Your complaint shall be referred to the concerned Police Station, where you may be called for further clarification and/or to give statement.</p>
                 </div>
 
-                <form>
+                <form onSubmit={handleSubmit}>
                     <div className="container1 mb-4">
                         <div className="row">
                             <div className="col-md p-float-label mr-3">
-                                <InputText required id="username" placeholder="Eg: Harsh Sunwani" />
-                                <label htmlFor="username" className="ml-3">Full Name</label>
+                                <InputText value={fir.name} onChange={handleChange} required name='name' id="name" placeholder="Eg: Harsh Sunwani" aria-required minLength={5} maxLength={255} />
+                                <label htmlFor="name" className="ml-3">Full Name</label>
                             </div>
                             <div className="col-md p-float-label mr-3">
-                                <InputMask id="ssn_input" mask="99999-99999" />
-                                <label htmlFor="ssn_input" className="ml-3">Contact Number</label>
+                                <InputMask name='phone' required value={fir.phone} onChange={(e: InputMaskChangeEvent) => setFir({...fir, [e.target.name]: e.target.value})} id="phone" mask="99999-99999" />
+                                <label htmlFor="phone" className="ml-3">Contact Number</label>
                             </div>
                             <div className="col-md p-float-label mr-3">
-                                <InputText type='email' id="email" placeholder="example@domain.com" />
+                                <InputText required name='email' value={fir.email} onChange={handleChange} type='email' id="email" placeholder="example@domain.com" />
                                 <label htmlFor="email" className="ml-3">Email</label>
                             </div>
                         </div>
@@ -58,7 +79,7 @@ const Fir = () => {
                     <div className="container2 mb-4">
                         <div className="row">
                             <div className="col-md p-float-label mr-3">
-                                <InputText id="add1" placeholder="Eg: 1209 street" />
+                                <InputText id="add1" required name='address1' minLength={15} placeholder="Eg: 1209 street" />
                                 <label htmlFor="add1" className="ml-3">Room No. / Street Name</label>
                             </div>
                             <div className="col-md p-float-label mr-3">

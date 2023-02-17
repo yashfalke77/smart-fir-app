@@ -1,6 +1,6 @@
 .login {
     display: flex;
-    height: 45rem;
+    height: 100vh;
 
     &__left {
         flex: 0 0 40%;
@@ -16,6 +16,8 @@
         flex-direction: column;
         justify-content: center;
         align-items: center;
+        overflow-x: hidden;
+        overflow-y: scroll;
     }
 
     &__logo {
@@ -29,5 +31,9 @@
     &__submit {
         display: flex;
         justify-content: center;
+    }
+
+    &__headingPrimary {
+        font-weight: 700;
     }
 }

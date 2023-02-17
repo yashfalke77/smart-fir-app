@@ -1,8 +1,8 @@
 .register {
     display: flex;
-    height: 45rem;
+    height: 100vh;
 
-    &__calender{
+    &__calender {
         width: 100%;
     }
 
@@ -16,9 +16,11 @@
 
     &__right {
         flex: 1;
+        overflow-x: hidden;
+        overflow-y: scroll;
     }
 
-    &__header{
+    &__header {
         margin-top: 3rem;
         display: flex;
         flex-direction: column;
@@ -31,12 +33,16 @@
     }
 
     &__form {
-        padding: 0rem 3rem;
+        padding: 0rem 6rem;
     }
 
     &__submit {
         display: flex;
         justify-content: center;
         margin-bottom: 1rem;
+    }
+
+    &__headingPrimary {
+        font-weight: 700;
     }
 }

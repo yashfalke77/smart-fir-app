@@ -17,7 +17,8 @@ const Login = () => {
                 <NavLink to='/'>
                     <img src={logo} className="login__logo" alt="logo" />
                 </NavLink>
-                <h1 className="display-6 mb-5 mt-4">Login</h1>
+                <h1 className="display-6 mb-3 mt-4 login__headingPrimary">Login</h1>
+                <p className="mb-5">Don't have an citizen id? <NavLink to='/register'>create here!</NavLink></p>
                 <div className="login__form">
                     <form action="">
                         <div className="p-inputgroup mb-5">

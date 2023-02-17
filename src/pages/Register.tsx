@@ -16,12 +16,14 @@ const Register = () => {
     return (
         <div className='register'>
             <div className="register__left"></div>
+
             <div className="register__right">
                 <div className="register__header">
                     <NavLink to='/'>
                         <img src={logo} className="register__logo" alt="logo" />
                     </NavLink>
-                    <h1 className="display-6 mb-5 mt-4">Register</h1>
+                    <h1 className="display-6 mb-3 mt-4 register__headingPrimary">Register</h1>
+                    <p className="mb-5">Already have an account? <NavLink to='/login'>login</NavLink></p>
                 </div>
                 <div className="register__form">
                     <form >
@@ -63,7 +65,7 @@ const Register = () => {
                                     <InputMask id="ssn_input" mask="99999-99999" />
                                     <label htmlFor="ssn_input" className="ml-3">Contact Number</label>
                                 </div>
-                                
+
                             </div>
                         </div>
                         <div className="container4 mb-5">
