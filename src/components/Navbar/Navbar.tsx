@@ -1,19 +1,49 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Button } from 'primereact/button';
 import "./navbar.scss";
 import { NavLink, useNavigate } from "react-router-dom";
 import localStorageService from "../../services/localStorage.service";
+import { Menu } from 'primereact/menu';
+
 
 const Navbar = () => {
 
-  const [user, setUser] = useState<object | undefined>(undefined)
+  const [user, setUser] = useState<any | undefined>(undefined)
   const navigate = useNavigate()
+  const menu = useRef<Menu>(null);
 
   useEffect(() => {
     const currentUser = localStorageService.getCurrentUser()
     setUser(currentUser)
     console.log(currentUser)
   }, [])
+
+  const items = [
+    {
+        label: `Hi, ${user?.name}`,
+        items: [
+            {
+                label: 'Profile',
+                icon: 'pi pi-refresh',
+            },
+            {
+                label: 'Check Status',
+                icon: 'pi pi-times',
+                url: 'http://localhost:5173/login'
+            }
+        ]
+    },
+    {
+        label: 'Accounts',
+        items: [
+            {
+                label: 'Logout',
+                icon: 'pi pi-sign-out',
+                url: 'http://localhost:5173/logout'
+            },
+        ]
+    }
+];
 
   return (
     <nav className="nav">
@@ -46,9 +76,11 @@ const Navbar = () => {
       )}
 
       {user && (
-        <NavLink to='/logout' className="text-decoration-none">
-          <Button label="LOGOUT" aria-label="Submit" />
-        </NavLink>)}
+        <div>
+            <Button icon="pi pi-user" rounded text raised severity="info" aria-label="User" onClick={(e) => menu?.current?.toggle(e)} />
+            <Menu className="mt-2 menu" model={items} popup ref={menu} />
+        </div>
+      )}
     </nav>
   );
 };
