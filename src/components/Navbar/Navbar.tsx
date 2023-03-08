@@ -20,30 +20,30 @@ const Navbar = () => {
 
   const items = [
     {
-        label: `Hi, ${user?.name}`,
-        items: [
-            {
-                label: 'Profile',
-                icon: 'pi pi-refresh',
-            },
-            {
-                label: 'Check Status',
-                icon: 'pi pi-times',
-                url: 'http://localhost:5173/login'
-            }
-        ]
+      label: `Hi, ${user?.name}`,
+      items: [
+        {
+          label: 'Profile',
+          icon: 'pi pi-refresh',
+        },
+        {
+          label: 'Check Status',
+          icon: 'pi pi-times',
+          url: 'http://localhost:5173/login'
+        }
+      ]
     },
     {
-        label: 'Accounts',
-        items: [
-            {
-                label: 'Logout',
-                icon: 'pi pi-sign-out',
-                url: 'http://localhost:5173/logout'
-            },
-        ]
+      label: 'Accounts',
+      items: [
+        {
+          label: 'Logout',
+          icon: 'pi pi-sign-out',
+          url: 'http://localhost:5173/logout'
+        },
+      ]
     }
-];
+  ];
 
   return (
     <nav className="nav">
@@ -67,18 +67,18 @@ const Navbar = () => {
       {!user && (
         <div className="nav__right">
           <NavLink to="/register" className="text-decoration-none">
-            <Button label="Register" className="p-button-outlined mr-3  text-uppercase" />
+            <Button label="Register" className="mr-3" outlined />
           </NavLink>
           <NavLink to='/login' className="text-decoration-none">
-            <Button label="LOGIN" aria-label="Submit" />
+            <Button label="Login" aria-label="Submit" />
           </NavLink>
         </div>
       )}
 
       {user && (
         <div>
-            <Button icon="pi pi-user" rounded text raised severity="info" aria-label="User" onClick={(e) => menu?.current?.toggle(e)} />
-            <Menu className="mt-2 menu" model={items} popup ref={menu} />
+          <Button icon="pi pi-user" rounded text raised severity="info" aria-label="User" onClick={(e) => menu?.current?.toggle(e)} />
+          <Menu className="mt-2 menu" model={items} popup ref={menu} />
         </div>
       )}
     </nav>
