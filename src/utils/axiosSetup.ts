@@ -33,6 +33,7 @@ const onResponseError = (error: AxiosError<ResponseError>): Promise<AxiosError> 
   // show toast an unexpected error occured when there is any issue of statuscode 500
   if (expectedError) {
     toast.error(error.response?.data.meta.message, {
+      toastId: 'api-error-toast',
       position: 'bottom-center',
       autoClose: 2000,
       hideProgressBar: true,

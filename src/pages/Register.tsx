@@ -11,6 +11,7 @@ import "../styles/register.scss"
 import { User } from '../models/user.model';
 import authService from '../services/auth.service';
 import { toast } from 'react-toastify';
+import localStorageService from '../services/localStorage.service';
 
 
 
@@ -48,6 +49,8 @@ const Register = () => {
             event.preventDefault()
             setLoading(true)
             const userResponse = await authService.registerUser({ ...register, role: 'user' });
+            console.log(userResponse)
+            localStorageService.setJwt(userResponse.data.data.authToken)
             setLoading(false)
             toast.success("Welcome to smart fir", {
                 position: "bottom-center",
