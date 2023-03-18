@@ -16,4 +16,4 @@ echo "Prettifying Complete\n"
 
 echo "\nValidating files"
 npx lint-staged
-echo "Validated files\n"
+echo "Validated files\n"npx lint-staged

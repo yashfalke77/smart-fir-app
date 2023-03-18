@@ -1,4 +1,0 @@
-{
-  "*.ts": "eslint src/",
-  "*.tsx": "eslint src/"
-}
