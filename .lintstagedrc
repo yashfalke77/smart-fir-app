@@ -1,3 +1,4 @@
 {
-  "*.js": "eslint src/"
+  "*.ts": "eslint src/",
+  "*.tsx": "eslint src/"
 }
