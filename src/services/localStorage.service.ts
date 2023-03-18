@@ -1,28 +1,26 @@
-import jwtDecode from "jwt-decode";
+import jwtDecode from 'jwt-decode'
 
-const tokenKey = "x-auth-token"
-
+const tokenKey = 'x-auth-token'
 
 export default {
-    setJwt: (jwt: string) => {
-        localStorage.setItem(tokenKey,jwt)
-    },
+  setJwt: (jwt: string) => {
+    localStorage.setItem(tokenKey, jwt)
+  },
 
-    getJwt: () => {
-        return localStorage.getItem(tokenKey)
-    },
+  getJwt: () => {
+    return localStorage.getItem(tokenKey)
+  },
 
-    logout: () => {
-        localStorage.removeItem(tokenKey)
-    },
+  logout: () => {
+    localStorage.removeItem(tokenKey)
+  },
 
-    getCurrentUser: () : object | undefined => {
-        try {
-            const token = localStorage.getItem(tokenKey) as string
-            return jwtDecode(token)
-        } catch (error) {
-            console.log(error)
-            return undefined;
-        }
+  getCurrentUser: (): object | undefined => {
+    try {
+      const token = localStorage.getItem(tokenKey) as string
+      return jwtDecode(token)
+    } catch (error) {
+      return undefined
     }
+  }
 }

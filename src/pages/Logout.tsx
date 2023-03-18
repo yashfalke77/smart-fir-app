@@ -1,18 +1,15 @@
-import React, { useEffect } from 'react'
+import { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import localStorageService from '../services/localStorage.service'
 
-const Logout = () => {
+const Logout = (): null => {
+  const navigate = useNavigate()
+  useEffect(() => {
+    localStorageService.logout()
+    navigate('/')
+  }, [])
 
-    const navigate = useNavigate()
-    useEffect(() => {
-        localStorageService.logout()
-        navigate("/")
-    }, [])
-    
-    return (
-        null
-    )
+  return null
 }
 
 export default Logout
