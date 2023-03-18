@@ -119,7 +119,7 @@ const Register = (): JSX.Element => {
         </div>
         <div className="register__form">
           <form onSubmit={wrapAsyncFunction(handleSubmit)} autoComplete="off">
-            <div className="container1 mb-5">
+            <div className="container1 my-10">
               <div className="row">
                 <div className="col-md p-float-label mr-3">
                   <InputText id="name" name="name" required minLength={3} maxLength={255} value={register.name} onChange={handleChange} />
@@ -135,7 +135,7 @@ const Register = (): JSX.Element => {
                 </div>
               </div>
             </div>
-            <div className="container2 mb-5">
+            <div className="container2 my-10">
               <div className="row">
                 <div className="col-md p-float-label mr-3">
                   <Dropdown
@@ -168,7 +168,7 @@ const Register = (): JSX.Element => {
                 </div>
               </div>
             </div>
-            <div className="container3 mb-5">
+            <div className="container3 my-10">
               <div className="row">
                 <div className="col-md p-float-label mr-3">
                   <InputText
@@ -200,7 +200,7 @@ const Register = (): JSX.Element => {
                 </div>
               </div>
             </div>
-            <div className="container4 mb-5">
+            <div className="container4 my-10">
               <div className="row">
                 <div className="col-md p-float-label mr-3">
                   <Dropdown
@@ -234,8 +234,8 @@ const Register = (): JSX.Element => {
               </div>
             </div>
             <div className="container4">
-              <div className="row">
-                <div className="col-md p-inputgroup mb-5 mr-3">
+              <div className="row my-10">
+                <div className="col-md p-inputgroup mr-3">
                   <Password
                     placeholder="Enter a Password"
                     name="password"

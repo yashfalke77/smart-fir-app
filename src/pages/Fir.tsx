@@ -79,7 +79,7 @@ const Fir = (): JSX.Element => {
 
         <div className="disclaimer mb-5">
           <h4>DISCLAIMER :</h4>
-          <p className="mb-3">
+          <p className="my-5">
             As per the prevailing laws, FIR of a major crime (′cognizable crimes like theft, burglary, motor vehicle theft,
             accident, chain-snatching, assault, rape, murder, attempt to commit murder, robbery, dacoity, extortion etc) can
             only be registered at a Police Station. Please contact your nearest Police Station for the same.
@@ -92,7 +92,7 @@ const Fir = (): JSX.Element => {
         </div>
 
         <form onSubmit={handleSubmit}>
-          <div className="container1 mb-4">
+          <div className="container1 my-8">
             <div className="row">
               <div className="col-md p-float-label mr-3">
                 <InputText
@@ -140,7 +140,7 @@ const Fir = (): JSX.Element => {
             </div>
           </div>
 
-          <div className="container2 mb-4">
+          <div className="container2 my-8">
             <div className="row">
               <div className="col-md p-float-label mr-3">
                 <InputText id="add1" required name="address1" minLength={15} placeholder="Eg: 1209 street" />
@@ -163,7 +163,7 @@ const Fir = (): JSX.Element => {
             </div>
           </div>
 
-          <div className="container3 mb-4">
+          <div className="container3 my-8">
             <div className="row">
               <div className="col-md p-float-label mr-3">
                 <Dropdown id="dropdown" options={options} placeholder="Eg: Maharashtra." />
@@ -180,7 +180,7 @@ const Fir = (): JSX.Element => {
             </div>
           </div>
 
-          <div className="container4 mb-4">
+          <div className="container4 my-8">
             <div className="row">
               <div className="col-md p-float-label mr-3">
                 <InputMask id="pincode" mask="999999" />
@@ -197,12 +197,12 @@ const Fir = (): JSX.Element => {
             </div>
           </div>
 
-          <div className="container5 mb-4 p-float-label">
+          <div className="container5 my-8 p-float-label">
             <InputTextarea id="complaint" rows={5} cols={30} placeholder="Complaint Description" />
             <label htmlFor="complaint">Complaint Description</label>
           </div>
 
-          <div className="container7 mb-4 d-flex">
+          <div className="container7 my-8 d-flex">
             <Checkbox checked inputId="policy" />
             <label htmlFor="policy" className="ml-2">
               I certify that the information provided by me in above form is accurate and correct as per best of my

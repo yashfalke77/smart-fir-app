@@ -45,7 +45,7 @@ const Navbar = (): JSX.Element => {
     <nav className="nav">
       <div className="nav__left">
         <NavLink to="/" className="text-decoration-none text-dark">
-          <h2 className="nav__logo">E-FIR</h2>
+          <h2 className="nav__logo ms-5">E-FIR</h2>
         </NavLink>
         <ul className="nav__list">
           <li className="nav__items">
@@ -61,6 +61,11 @@ const Navbar = (): JSX.Element => {
           <li className="nav__items">
             <NavLink to="/" className="nav__link">
               Contact Us
+            </NavLink>
+          </li>
+          <li className="nav__items">
+            <NavLink to="/admin" className="nav__link">
+              Admin Panel
             </NavLink>
           </li>
         </ul>
@@ -82,6 +87,7 @@ const Navbar = (): JSX.Element => {
           <Button
             icon="pi pi-user"
             rounded
+            color='primary'
             text
             raised
             severity="info"

@@ -9,5 +9,9 @@ export default {
 
   loginUser: async (userData: any) => {
     return await apiService.post(`${apiUrl}/login`, userData)
+  },
+
+  getAllUser: async () => {
+    return await apiService.get(apiUrl)
   }
 }

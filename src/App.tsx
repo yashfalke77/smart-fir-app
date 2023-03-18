@@ -8,6 +8,9 @@ import Register from './pages/Register'
 import { ToastContainer } from 'react-toastify'
 import Logout from './pages/Logout'
 import PrivateRoute from './components/PrivateRoute/PrivateRoute'
+import AdminHome from './pages/admin/AdminUser'
+import NewAdminUser from './pages/admin/NewAdminUser'
+import AdminLogin from './pages/admin/AdminLogin'
 
 function App (): JSX.Element {
   return (
@@ -25,6 +28,11 @@ function App (): JSX.Element {
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path="/logout" element={<Logout />} />
+
+        {/* Admin Routes */}
+        <Route path='/admin' element={<AdminHome />} />
+        <Route path='/admin/new' element={<NewAdminUser />} />
+        <Route path='/admin/login' element={<AdminLogin />} />
       </Routes>
       <ToastContainer
         position="bottom-center"

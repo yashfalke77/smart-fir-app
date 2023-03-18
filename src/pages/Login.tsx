@@ -26,7 +26,7 @@ const Login = (): JSX.Element => {
       event.preventDefault()
       setLoading(true)
       const userResponse = await authService.loginUser(login)
-      localStorageService.setJwt(userResponse.data.data)
+      localStorageService.setJwt(userResponse.data.data.token)
       setLoading(false)
       toast.success('Welcome to smart fir', {
         position: 'bottom-center',
@@ -56,7 +56,7 @@ const Login = (): JSX.Element => {
         </p>
         <div className="login__form">
           <form onSubmit={wrapAsyncFunction(handleSubmit)}>
-            <div className="p-inputgroup mb-5">
+            <div className="p-inputgroup my-10">
               <span className="p-inputgroup-addon">
                 <i className="pi pi-user"></i>
               </span>
@@ -69,7 +69,7 @@ const Login = (): JSX.Element => {
                 onChange={(e) => { setLogin({ ...login, [e.target.name]: e.target.value }) }}
               />
             </div>
-            <div className="p-inputgroup mb-5">
+            <div className="p-inputgroup my-10">
               <Password
                 name="password"
                 placeholder="Enter a Password"
