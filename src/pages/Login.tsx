@@ -22,6 +22,7 @@ const Login = (): JSX.Element => {
   const navigate = useNavigate()
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>): Promise<void> => {
+    console.log("hjhjhjh");
     try {
       event.preventDefault()
       setLoading(true)
