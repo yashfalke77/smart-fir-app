@@ -61,6 +61,7 @@ const Login = (): JSX.Element => {
                 <i className="pi pi-user"></i>
               </span>
               <InputText
+                required
                 placeholder="Email"
                 type="email"
                 name="email"
@@ -72,6 +73,9 @@ const Login = (): JSX.Element => {
               <Password
                 name="password"
                 placeholder="Enter a Password"
+                required
+                minLength={8}
+                maxLength={1024}
                 value={login.password}
                 onChange={(e) => { setLogin({ ...login, [e.target.name]: e.target.value }) }}
                 feedback={false}

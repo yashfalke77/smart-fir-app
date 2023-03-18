@@ -122,13 +122,13 @@ const Register = (): JSX.Element => {
             <div className="container1 mb-5">
               <div className="row">
                 <div className="col-md p-float-label mr-3">
-                  <InputText id="name" name="name" value={register.name} onChange={handleChange} />
+                  <InputText id="name" name="name" required minLength={3} maxLength={255} value={register.name} onChange={handleChange} />
                   <label className="ml-3" htmlFor="name">
                     Name
                   </label>
                 </div>
                 <div className="col-md p-float-label mr-3">
-                  <InputText type="email" name="email" value={register.email} onChange={handleChange} id="email" />
+                  <InputText type="email" name="email" required value={register.email} onChange={handleChange} id="email" />
                   <label className="ml-3" htmlFor="email">
                     Email
                   </label>
@@ -139,6 +139,7 @@ const Register = (): JSX.Element => {
               <div className="row">
                 <div className="col-md p-float-label mr-3">
                   <Dropdown
+                    required
                     inputId="dd-gender"
                     name="gender"
                     options={gender}
@@ -154,6 +155,8 @@ const Register = (): JSX.Element => {
                   <InputMask
                     name="phone"
                     required
+                    minLength={10}
+                    maxLength={10}
                     id="phone"
                     mask="99999-99999"
                     value={register.phone}
@@ -171,6 +174,9 @@ const Register = (): JSX.Element => {
                   <InputText
                     id="street"
                     name="street"
+                    required
+                    minLength={5}
+                    maxLength={255}
                     value={register.address.street}
                     onChange={(e) => { setRegister({ ...register, address: { ...register.address, street: e.target.value } }) }}
                   />
@@ -182,6 +188,9 @@ const Register = (): JSX.Element => {
                   <InputText
                     name="city"
                     id="city"
+                    required
+                    minLength={5}
+                    maxLength={255}
                     value={register.address.city}
                     onChange={(e) => { setRegister({ ...register, address: { ...register.address, city: e.target.value } }) }}
                   />
@@ -196,6 +205,7 @@ const Register = (): JSX.Element => {
                 <div className="col-md p-float-label mr-3">
                   <Dropdown
                     inputId="dd-state"
+                    required
                     name="state"
                     className="w-full md:w-14rem"
                     options={state}
@@ -210,6 +220,9 @@ const Register = (): JSX.Element => {
                   <InputMask
                     id="pincode"
                     mask="999999"
+                    required
+                    minLength={6}
+                    maxLength={6}
                     name="pincode"
                     value={register.pincode}
                     onChange={(e: InputMaskChangeEvent) => { setRegister({ ...register, [e.target.name]: e.target.value }) }}
@@ -226,6 +239,9 @@ const Register = (): JSX.Element => {
                   <Password
                     placeholder="Enter a Password"
                     name="password"
+                    required
+                    minLength={8}
+                    maxLength={1024}
                     value={register.password}
                     onChange={(e) => { setRegister({ ...register, [e.target.name]: e.target.value }) }}
                     feedback={false}
@@ -234,6 +250,7 @@ const Register = (): JSX.Element => {
                 </div>
                 <div className="col-md mr-3">
                   <Calendar
+                    required
                     className="register__calender"
                     name="dob"
                     placeholder="Date of Birth"
