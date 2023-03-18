@@ -10,7 +10,8 @@
     "lint:fix": "eslint src/ --fix",
     "prettier": "prettier --check src/",
     "prettier:fix": "npx prettier --write src/",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "prepare": "husky install"
   },
   "dependencies": {
     "@hookform/resolvers": "^2.9.11",
