@@ -35,6 +35,7 @@
     "no-debugger": "warn",
     "max-nested-callbacks": [2, 3],
     "radix": "off",
+    "jsx-quotes": ["error", "prefer-single"],
     "unicorn/better-regex": "error",
     "unicorn/consistent-destructuring": "error",
     "unicorn/explicit-length-check": "error",
