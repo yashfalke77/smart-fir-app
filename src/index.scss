@@ -1,0 +1,35 @@
+// font setup
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
+
+// variables setup
+@import url('./styles/variables.scss');
+
+// tailwind setup
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+*,
+*:after,
+*:before {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  box-sizing: inherit;
+}
+
+ul {
+  margin-bottom: 0rem;
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 400;
+  font-size: 1rem;
+  line-height: 1.7;
+  box-sizing: border-box;
+  background-color: var(--color-white);
+  color: var(--color-black);
+  overflow-x: hidden;
+}
