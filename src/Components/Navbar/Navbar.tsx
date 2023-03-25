@@ -55,10 +55,10 @@ const Navbar = () => {
   ];
 
   return (
-    <header className='bg-white border'>
+    <header className='bg-white border sticky top-0 z-50'>
       {/* for desktop and laptops */}
       <nav
-        className='mx-auto flex max-w-7xl items-center justify-between p-4 lg:px-8 '
+        className='mx-auto flex max-w-7xl items-center justify-between p-2 lg:px-8 '
         aria-label='Global'
       >
         <div className='flex lg:flex-1'>
