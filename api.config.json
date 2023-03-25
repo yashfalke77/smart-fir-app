@@ -1,0 +1,4 @@
+{
+    "devEndpoint": "http://localhost:8080/api",
+    "prodEndpoint": "https://smart-fir-api-production.up.railway.app/api"
+}
