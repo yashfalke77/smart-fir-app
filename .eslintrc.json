@@ -36,6 +36,13 @@
     "max-nested-callbacks": [2, 3],
     "radix": "off",
     "jsx-quotes": ["error", "prefer-single"],
+    "import/no-extraneous-dependencies": "off",
+    "react/function-component-definition": [
+      2,
+      {
+        "namedComponents": "arrow-function"
+      }
+    ],
     "unicorn/better-regex": "error",
     "unicorn/consistent-destructuring": "error",
     "unicorn/explicit-length-check": "error",

@@ -4,6 +4,10 @@
 // variables setup
 @import url('./styles/variables.scss');
 
+// prime react support
+@import url('./styles/theme.scss');
+@import url("primeicons/primeicons.css");
+
 // tailwind setup
 @tailwind base;
 @tailwind components;
