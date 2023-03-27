@@ -132,7 +132,7 @@ const Navbar = () => {
           <a href='/' className='text-base font-regular leading-6 text-gray-900'>
             Check Status
           </a>
-          <a href='/' className='text-base font-regular leading-6 text-gray-900'>
+          <a href='/contact' className='text-base font-regular leading-6 text-gray-900'>
             Contact Us
           </a>
         </Popover.Group>
@@ -265,7 +265,7 @@ const Navbar = () => {
                   Check Status
                 </a>
                 <a
-                  href='/'
+                  href='/contact'
                   className='-mx-3 block rounded-lg py-2 px-3 text-base font-regular leading-7 text-gray-900 hover:bg-gray-50'
                 >
                   Contact Us
