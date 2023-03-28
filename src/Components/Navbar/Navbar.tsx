@@ -139,7 +139,7 @@ const Navbar = () => {
         <div className='hidden  lg:flex lg:items-center lg:flex-1 lg:justify-end'>
           {!user && (
             <>
-              <a href='/' className='text-base font-regular leading-6 text-gray-900 mr-8'>
+              <a href='/login' className='text-base font-regular leading-6 text-gray-900 mr-8'>
                 Sign In
                 {' '}
                 <span aria-hidden='true'>&rarr;</span>
@@ -279,7 +279,7 @@ const Navbar = () => {
                   Sign Up
                 </a>
                 <a
-                  href='/'
+                  href='/login'
                   className='-mx-3 block rounded-lg py-2.5 px-3 text-base font-regular leading-7 text-gray-900 hover:bg-gray-50'
                 >
                   Sign In
