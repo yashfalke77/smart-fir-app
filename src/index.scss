@@ -37,3 +37,16 @@ body {
   color: var(--color-black);
   overflow-x: hidden;
 }
+
+// prime-ng small fixes
+.login {
+  .p-button .p-button-icon-right {
+    @apply
+    mr-4
+  }
+
+  .p-button {
+    @apply
+    w-full
+  }
+}

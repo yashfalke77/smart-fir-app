@@ -1,36 +1,75 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { Button } from 'primereact/button';
+import { useForm, SubmitHandler } from 'react-hook-form';
+import { yupResolver } from '@hookform/resolvers/yup';
+import * as Yup from 'yup';
+import logo from '../assets/images/logo.png';
 import authImage from '../assets/images/auth.png';
+import { LoginUser } from '../models/login.model';
 
-const Login = () => (
-  <main className='flex h-screen'>
-    <section className='flex-0 flex-grow-0 flex-shrink-0 w-2/5'>
-      <img className='w-full h-full object-cover' src={authImage} alt='auth' />
-    </section>
-    <section className='overflow-x-hidden overflow-y-scroll w-full p-48'>
-      <form>
-        <div className='mb-6'>
-          <label htmlFor='phone' className='block mb-2 text-sm font-regular text-gray-900 '>Phone Number</label>
-          <input type='phone' id='phone' className='bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-400 focus:border-primary-400 block w-full p-2.5 ' placeholder='8408965701' required />
+const Login = () => {
+  const loginSchema = Yup.object().shape({
+    phone: Yup.string().required().min(10).max(10)
+      .matches(/^((\\+[1-9]{1,4}[ \\-]*)|(\\(\d{2,3}\\)[ \\-]*)|(\d{2,4})[ \\-]*)*?\d{3,4}?[ \\-]*\d{3,4}?$/, 'Phone number is not valid'),
+    password: Yup.string().min(8).max(100).matches(/^[\da-z]+$/i, 'Password should contain alphabets and numbers only')
+      .required(),
+  });
+
+  const { register, handleSubmit, formState: { errors } } = useForm<LoginUser>({
+    resolver: yupResolver(loginSchema),
+  });
+
+  const [loading, setLoading] = useState(false);
+
+  const submitForm: SubmitHandler<LoginUser> = (data) => {
+    // eslint-disable-next-line no-console
+    console.log(data);
+    setLoading(true);
+    setTimeout(() => {
+      setLoading(false);
+    }, 4000);
+  };
+
+  return (
+    <main className='login flex h-screen'>
+      <section className='flex-0 flex-grow-0 flex-shrink-0 w-2/5 xl:block lg:block md:hidden sm:hidden'>
+        <img className='w-full h-full object-cover' src={authImage} alt='auth' />
+      </section>
+      <section className='overflow-x-hidden overflow-y-scroll w-full px-48 py-24'>
+        <div className='flex justify-center'>
+          <img className='w-1/5 mb-4' src={logo} alt='logo' />
         </div>
-        <div className='mb-6'>
-          <label htmlFor='password' className='block mb-2 text-sm font-regular text-gray-900 '>Password</label>
-          <input type='password' id='password' className='bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-400 focus:border-primary-400 block w-full p-2.5 ' placeholder='•••••••••' required />
-        </div>
-        <div className='flex items-start mb-6'>
-          <div className='flex items-center h-5'>
-            <input id='remember' type='checkbox' value='' className='w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-blue-300' required />
+        <h2 className='mb-8 text-5xl tracking-tight font-semibold text-gray-900 text-center'>Login</h2>
+        <form onSubmit={handleSubmit(submitForm)} autoComplete='off'>
+          <div className='mb-6'>
+            <label htmlFor='phone' className='block mb-2 text-sm font-regular text-gray-900 '>Phone Number</label>
+            <input {...register('phone')} type='phone' id='phone' className='bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-400 focus:border-primary-400 block w-full p-2.5 ' placeholder='8408965701' />
+            <p className='text-red-600 text-xs mt-1'>{errors.phone?.message}</p>
           </div>
-          <label htmlFor='remember' className='ml-2 text-sm font-regular text-gray-900'>
-            I agree with the
+          <div className='mb-6'>
+            <label htmlFor='password' className='block mb-2 text-sm font-regular text-gray-900 '>Password</label>
+            <input {...register('password')} type='password' id='password' className='bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-400 focus:border-primary-400 block w-full p-2.5 ' placeholder='•••••••••' />
+            <p className='text-red-600 text-xs mt-1'>{errors.password?.message}</p>
+          </div>
+          <div className='flex justify-end mb-6'>
+            <label htmlFor='remember' className='text-sm font-regular text-gray-900'>
+              <a href='/' className='text-primary-800 hover:underline'>Forgot Password?</a>
+            </label>
+          </div>
+          {/* <button type='submit' className='text-white bg-primary-800 hover:bg-primary-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-regular rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center '>Submit</button> */}
+          <div className='flex justify-center'>
+            <Button loading={loading} label='Submit' icon='pi pi-check' className='text-base font-regular leading-6' />
+          </div>
+          <p className='text-sm mt-3'>
+            don&apos;t have an account?
             {' '}
-            <a href='/' className='text-blue-600 hover:underline'>terms and conditions</a>
-            .
-          </label>
-        </div>
-        <button type='submit' className='text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-regular rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center '>Submit</button>
-      </form>
-    </section>
-  </main>
-);
+            <a className='text-primary-800 hover:underline' href='/'>Register here</a>
+          </p>
+
+        </form>
+      </section>
+    </main>
+  );
+};
 
 export default Login;

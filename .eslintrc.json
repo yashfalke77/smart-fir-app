@@ -53,6 +53,7 @@
         "some": ["nesting", "id"]
       }
     }],
+    "react/jsx-props-no-spreading": "off",
     "unicorn/better-regex": "error",
     "unicorn/consistent-destructuring": "error",
     "unicorn/explicit-length-check": "error",
