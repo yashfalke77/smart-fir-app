@@ -144,7 +144,7 @@ const Navbar = () => {
                 {' '}
                 <span aria-hidden='true'>&rarr;</span>
               </a>
-              <a href='/'>
+              <a href='/register'>
                 <Button label='Sign Up' className='text-base font-regular leading-6' />
               </a>
             </>
@@ -273,7 +273,7 @@ const Navbar = () => {
               </div>
               <div className='py-6'>
                 <a
-                  href='/'
+                  href='/register'
                   className='-mx-3 block rounded-lg py-2.5 px-3 text-base font-regular leading-7 text-gray-900 hover:bg-gray-50'
                 >
                   Sign Up

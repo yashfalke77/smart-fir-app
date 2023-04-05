@@ -5,6 +5,7 @@ import Contact from './pages/Contact';
 import Home from './pages/Home';
 import Login from './pages/Login';
 import PageNotFound from './pages/PageNotFound';
+import Register from './pages/Register';
 
 const App = () => (
   <div>
@@ -12,6 +13,7 @@ const App = () => (
       <Route path='/' element={<Home />} />
       <Route path='/contact' element={<Contact />} />
       <Route path='/login' element={<Login />} />
+      <Route path='/register' element={<Register />} />
       <Route path='*' element={<PageNotFound />} />
     </Routes>
   </div>

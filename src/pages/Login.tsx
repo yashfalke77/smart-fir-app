@@ -37,9 +37,9 @@ const Login = () => {
       </section>
       <section className='overflow-x-hidden overflow-y-scroll w-full px-48 py-24'>
         <div className='flex justify-center'>
-          <img className='w-1/5 mb-4' src={logo} alt='logo' />
+          <img className='w-2/12 mb-4' src={logo} alt='logo' />
         </div>
-        <h2 className='mb-8 text-5xl tracking-tight font-semibold text-gray-900 text-center'>Login</h2>
+        <h2 className='mb-8 text-4xl tracking-tight font-semibold text-gray-900 text-center'>Login</h2>
         <form onSubmit={handleSubmit(submitForm)} autoComplete='off'>
           <div className='mb-6'>
             <label htmlFor='phone' className='block mb-2 text-sm font-regular text-gray-900 '>Phone Number</label>
@@ -63,7 +63,7 @@ const Login = () => {
           <p className='text-sm mt-3'>
             don&apos;t have an account?
             {' '}
-            <a className='text-primary-800 hover:underline' href='/'>Register here</a>
+            <a className='text-primary-800 hover:underline' href='/register'>Register here</a>
           </p>
 
         </form>
