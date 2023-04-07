@@ -4,6 +4,7 @@ import { useForm, SubmitHandler } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as Yup from 'yup';
 import Datepicker from 'react-tailwindcss-datepicker';
+import { DateRangeType } from 'react-tailwindcss-datepicker/dist/types';
 import logo from '../assets/images/logo.png';
 import authImage from '../assets/images/auth.png';
 import { RegisterUser } from '../models/register.model';
@@ -16,6 +17,10 @@ const Register = () => {
     phone: Yup.string().required().min(10).max(10)
       .matches(/^((\\+[1-9]{1,4}[ \\-]*)|(\\(\d{2,3}\\)[ \\-]*)|(\d{2,4})[ \\-]*)*?\d{3,4}?[ \\-]*\d{3,4}?$/, 'Phone number is not valid'),
     gender: Yup.string().required(),
+    dob: Yup.object().shape({
+      startDate: Yup.date().required(),
+      endDate: Yup.date(),
+    }),
     address: Yup.object().shape({
       street: Yup.string().required().min(5).max(255),
       city: Yup.string().required().min(5).max(255),
@@ -27,26 +32,26 @@ const Register = () => {
   });
 
   const {
-    register, handleSubmit, setValue, formState: { errors },
+    register, handleSubmit, setValue, getValues, formState: { errors },
   } = useForm<RegisterUser>({
     resolver: yupResolver(registerSchema),
   });
 
   const [loading, setLoading] = useState(false);
-  const [dob, setDob] = useState({
-    startDate: null,
-    endDate: null,
-  });
+  // const [dob, setDob] = useState({
+  //   startDate: null,
+  //   endDate: null,
+  // });
 
   const currentDate = new Date();
 
-  const handleValueChange = (newValue: any) => {
-    setDob(newValue);
-  };
+  // const handleValueChange = (newValue: any) => {
+  //   setDob(newValue);
+  // };
 
   const submitForm: SubmitHandler<RegisterUser> = (data) => {
     // eslint-disable-next-line no-console
-    console.log({ ...data, ...dob });
+    console.log({ ...data });
     setLoading(true);
     setTimeout(() => {
       setLoading(false);
@@ -85,13 +90,14 @@ const Register = () => {
               <Datepicker
                 useRange={false}
                 asSingle
-                value={dob}
-                onChange={handleValueChange}
+                value={getValues('dob') as unknown as DateRangeType}
+                onChange={(newValue) => setValue('dob', newValue as any, { shouldValidate: true })}
                 displayFormat='DD-MM-YYYY'
                 startFrom={new Date(currentDate.getFullYear() - 18, currentDate.getMonth(), currentDate.getDate())}
                 maxDate={new Date(currentDate.getFullYear() - 18, currentDate.getMonth(), currentDate.getDate())}
                 minDate={new Date(currentDate.getFullYear() - 100, currentDate.getMonth(), currentDate.getDate())}
               />
+              <p className='text-red-600 text-xs mt-1'>{errors.dob?.startDate?.message}</p>
             </div>
             <div>
               <label htmlFor='state' className='block mb-2 text-sm font-regular text-gray-900 '>State</label>

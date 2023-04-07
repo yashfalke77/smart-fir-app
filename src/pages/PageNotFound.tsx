@@ -1,22 +1,18 @@
 import React from 'react';
+import { ReactComponent as NotFound } from '../assets/svgs/404.svg';
 
 const PageNotFound = () => (
-  <main className='grid h-screen place-items-center bg-white py-24 px-6 sm:py-32 lg:px-8'>
-    <div className='text-center'>
-      <p className='text-base font-semibold text-primary-400'>404</p>
-      <h1 className='mt-4 text-3xl font-bold tracking-tight text-gray-900 sm:text-5xl'>Page not found</h1>
-      <p className='mt-6 text-base leading-7 text-gray-600'>Sorry, we couldn’t find the page you’re looking for.</p>
-      <div className='mt-10 flex items-center justify-center gap-x-6'>
-        <a
-          href='/'
-          className='rounded-md bg-primary-400 px-3.5 py-2.5 text-sm font-medium text-white shadow-sm hover:bg-primary-800 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600'
-        >
+  <main className='my-auto bg-gray-50'>
+    <div className='flex flex-col justify-center items-center px-6 mx-auto h-screen xl:px-0'>
+      <div className='flex justify-center w-2/5'>
+        <NotFound />
+      </div>
+      <div className='text-center xl:max-w-4xl'>
+        <h1 className='mb-3 text-2xl font-bold leading-tight text-gray-900 sm:text-4xl lg:text-5xl'>Page not found</h1>
+        <p className='mb-5 text-base font-normal text-gray-500 md:text-lg'>Oops! Looks like you followed a bad link. If you think this is a problem with us, please tell us.</p>
+        <a href='/' className='text-white bg-primary-400 hover:bg-primary-800 focus:ring-4 focus:ring-primary-400 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center mr-3'>
+          <svg className='mr-2 -ml-1 w-5 h-5' fill='currentColor' viewBox='0 0 20 20' xmlns='http://www.w3.org/2000/svg'><path fill-rule='evenodd' d='M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z' clip-rule='evenodd' /></svg>
           Go back home
-        </a>
-        <a href='/' className='text-sm font-medium text-gray-900'>
-          Contact support
-          {' '}
-          <span aria-hidden='true'>&rarr;</span>
         </a>
       </div>
     </div>

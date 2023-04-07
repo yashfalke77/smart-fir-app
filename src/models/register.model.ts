@@ -11,7 +11,10 @@ export interface RegisterUser {
     state: string
   }
   pincode: string | undefined
-  dob: string
+  dob: {
+    startDate: Date
+    endDate: Date
+  }
   isActive?: boolean
   password: string
 }
