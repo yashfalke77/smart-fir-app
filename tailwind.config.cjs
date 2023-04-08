@@ -9,6 +9,9 @@ module.exports = {
           '800':'#005ce6',
         }
       },
+      height: {
+        '35': '35rem'
+      },
       fontFamily: {
         'poppins': ['Poppins', 'sans-serif']
       },

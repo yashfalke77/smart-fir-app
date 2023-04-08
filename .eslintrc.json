@@ -76,6 +76,7 @@
     "unicorn/prefer-string-trim-start-end": "error",
     "unicorn/prefer-switch": "error",
     "unicorn/prevent-abbreviations": "off",
-    "react/no-unknown-property": "off"
+    "react/no-unknown-property": "off",
+    "react/prop-types": "off"
   }
 }
