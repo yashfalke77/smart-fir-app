@@ -1,6 +1,6 @@
 import React from 'react';
 import Sidebar from '../../Components/ADMIN/Sidebar';
-import Navbar from '../../Components/Navbar/Navbar';
+import Navbar from '../../Components/Navbar';
 import Feedback from '../../Components/ADMIN/Feedback';
 import Stats from '../../Components/ADMIN/Statistics';
 

@@ -1,4 +1,5 @@
 import jwtDecode from 'jwt-decode';
+import { CurrentUser } from '../models/user.model';
 
 const tokenKey = 'x-auth-token';
 
@@ -13,7 +14,7 @@ export default {
     localStorage.removeItem(tokenKey);
   },
 
-  getCurrentUser: (): object | undefined => {
+  getCurrentUser: (): CurrentUser | undefined => {
     try {
       const token = localStorage.getItem(tokenKey) as string;
       return jwtDecode(token);

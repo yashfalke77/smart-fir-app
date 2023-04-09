@@ -13,7 +13,7 @@ import {
 import { ChevronDownIcon } from '@heroicons/react/20/solid';
 import { Button } from 'primereact/button';
 import { NavLink } from 'react-router-dom';
-import localStorageService from '../../services/localStorage.service';
+import localStorageService from '../services/localStorage.service';
 
 function classNames(...classes: any[]) {
   return classes.filter(Boolean).join(' ');
@@ -29,18 +29,6 @@ const Navbar = () => {
   }, []);
 
   const features = [
-    {
-      name: 'Register Police Station',
-      description: 'Register your all police station.',
-      href: '/',
-      icon: ChartPieIcon,
-    },
-    {
-      name: 'Admin Panel',
-      description: 'Speak directly to your customers',
-      href: '/',
-      icon: CursorArrowRaysIcon,
-    },
     {
       name: 'About us',
       description: 'Your customers’ data will be safe and secure',
@@ -63,10 +51,10 @@ const Navbar = () => {
         aria-label='Global'
       >
         <div className='flex lg:flex-1'>
-          <a href='/' className='-m-1.5 p-1.5'>
-            <span className='sr-only'>Your Company</span>
+          <NavLink to='/' className='-m-1.5 p-1.5'>
+            <span className='sr-only'>smart fir</span>
             <h1 className='text-xl font-medium leading-6'>Smart E-Fir</h1>
-          </a>
+          </NavLink>
         </div>
         <div className='flex lg:hidden'>
           <button
@@ -122,14 +110,60 @@ const Navbar = () => {
                       </div>
                     </div>
                   ))}
+                  {user?.role === 'admin' && (
+                    <div
+                      key='admin panel'
+                      className='group relative flex items-center gap-x-6 rounded-lg p-4 text-sm leading-6 hover:bg-gray-50'
+                    >
+                      <div className='flex h-11 w-11 flex-none items-center justify-center rounded-lg bg-gray-50 group-hover:bg-white'>
+                        <CursorArrowRaysIcon
+                          className='h-6 w-6 text-gray-600 group-hover:text-primary-800'
+                          aria-hidden='true'
+                        />
+                      </div>
+                      <div className='flex-auto'>
+                        <NavLink
+                          to='/admin'
+                          className='block font-regular text-gray-900'
+                        >
+                          Admin Panel
+                          <span className='absolute inset-0' />
+                        </NavLink>
+                        <p className='mt-1 text-gray-600'>Speak directly to your customers</p>
+                      </div>
+                    </div>
+                  )}
+                  {(user?.role === 'authority' || user?.role === 'admin') && (
+                    <div
+                      key='Register Police Station'
+                      className='group relative flex items-center gap-x-6 rounded-lg p-4 text-sm leading-6 hover:bg-gray-50'
+                    >
+                      <div className='flex h-11 w-11 flex-none items-center justify-center rounded-lg bg-gray-50 group-hover:bg-white'>
+                        <ChartPieIcon
+                          className='h-6 w-6 text-gray-600 group-hover:text-primary-800'
+                          aria-hidden='true'
+                        />
+                      </div>
+                      <div className='flex-auto'>
+                        <NavLink
+                          to='/'
+                          className='block font-regular text-gray-900'
+                        >
+                          Register Police Station
+                          <span className='absolute inset-0' />
+                        </NavLink>
+                        <p className='mt-1 text-gray-600'>Register your all police station.</p>
+                      </div>
+                    </div>
+                  )}
                 </div>
               </Popover.Panel>
             </Transition>
           </Popover>
 
-          <a href='/' className='text-base font-regular leading-6 text-gray-900'>
+          <NavLink to='/fir' className='text-base font-regular leading-6 text-gray-900'>
             File Fir
-          </a>
+          </NavLink>
           <a href='/' className='text-base font-regular leading-6 text-gray-900'>
             Check Status
           </a>
@@ -248,12 +282,12 @@ const Navbar = () => {
                 >
                   Admin Panel
                 </NavLink>
-                <a
-                  href='/'
+                <NavLink
+                  to='/'
                   className='-mx-3 block rounded-lg py-2 px-3 text-base font-regular leading-7 text-gray-900 hover:bg-gray-50'
                 >
-                  File Efir
-                </a>
+                  File E-fir
+                </NavLink>
                 <a
                   href='/'
                   className='-mx-3 block rounded-lg py-2 px-3 text-base font-regular leading-7 text-gray-900 hover:bg-gray-50'

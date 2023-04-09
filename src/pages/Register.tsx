@@ -50,7 +50,7 @@ const Register = () => {
   const submitForm: SubmitHandler<RegisterUser> = async (data) => {
     try {
       setLoading(true);
-      const userResponse = await authService.registerUser({ ...data, dob: data.dob.startDate, role: 'admin' });
+      const userResponse = await authService.registerUser({ ...data, dob: data.dob.startDate, role: 'user' });
       localStorageService.setJwt(userResponse.data.data.authToken);
       setLoading(false);
       toast.success('Welcome to smart fir', {

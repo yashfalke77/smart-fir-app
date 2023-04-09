@@ -1,10 +1,10 @@
 import React from 'react';
-import Features from '../Components/Features/Features';
-import Navbar from '../Components/Navbar/Navbar';
+import Features from '../Components/Features';
+import Navbar from '../Components/Navbar';
 import logo from '../assets/images/logo.png';
 import home from '../assets/images/home.jpeg';
-import FAQ from '../Components/FAQ/FAQ';
-import Footer from '../Components/Footer/Footer';
+import FAQ from '../Components/FAQ';
+import Footer from '../Components/Footer';
 
 const Home = () => (
   <div>
