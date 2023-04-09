@@ -3,9 +3,12 @@ import { Button } from 'primereact/button';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as Yup from 'yup';
+import { useNavigate } from 'react-router-dom';
 import logo from '../assets/images/logo.png';
 import authImage from '../assets/images/auth.png';
 import { LoginUser } from '../models/login.model';
+import authService from '../services/auth.service';
+import localStorageService from '../services/localStorage.service';
 
 const Login = () => {
   const loginSchema = Yup.object().shape({
@@ -20,14 +23,18 @@ const Login = () => {
   });
 
   const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
 
-  const submitForm: SubmitHandler<LoginUser> = (data) => {
-    // eslint-disable-next-line no-console
-    console.log(data);
-    setLoading(true);
-    setTimeout(() => {
+  const submitForm: SubmitHandler<LoginUser> = async (data) => {
+    try {
+      setLoading(true);
+      const userResponse = await authService.loginUser({ ...data });
+      localStorageService.setJwt(userResponse.data.data.token);
       setLoading(false);
-    }, 4000);
+      navigate('/');
+    } catch (error) {
+      setLoading(false);
+    }
   };
 
   return (
@@ -43,7 +50,7 @@ const Login = () => {
         <form onSubmit={handleSubmit(submitForm)} autoComplete='off'>
           <div className='mb-6'>
             <label htmlFor='phone' className='block mb-2 text-sm font-regular text-gray-900 '>Phone Number</label>
-            <input {...register('phone')} type='phone' id='phone' className='bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-400 focus:border-primary-400 block w-full p-2.5 ' placeholder='8408965701' />
+            <input {...register('phone')} minLength={10} maxLength={10} type='phone' id='phone' className='bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-400 focus:border-primary-400 block w-full p-2.5 ' placeholder='8408965701' />
             <p className='text-red-600 text-xs mt-1'>{errors.phone?.message}</p>
           </div>
           <div className='mb-6'>

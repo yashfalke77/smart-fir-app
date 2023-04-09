@@ -3,7 +3,7 @@ import config from '../../api.config.json';
 import setupInterceptorsTo from '../utils/axiosSetup';
 import localStorageService from './localStorage.service';
 
-axios.defaults.baseURL = config.prodEndpoint;
+axios.defaults.baseURL = config.devEndpoint;
 
 const setJWTHeaders = (): void => {
   axios.defaults.headers.common['x-auth-token'] = localStorageService.getJwt();

@@ -12,6 +12,7 @@ import {
 } from '@heroicons/react/24/outline';
 import { ChevronDownIcon } from '@heroicons/react/20/solid';
 import { Button } from 'primereact/button';
+import { NavLink } from 'react-router-dom';
 import localStorageService from '../../services/localStorage.service';
 
 function classNames(...classes: any[]) {
@@ -194,12 +195,12 @@ const Navbar = () => {
                   </Menu.Item>
                   <Menu.Item>
                     {({ active }) => (
-                      <a
-                        href='/'
+                      <NavLink
+                        to='/logout'
                         className={classNames(active ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700')}
                       >
                         Sign out
-                      </a>
+                      </NavLink>
                     )}
                   </Menu.Item>
                 </Menu.Items>
@@ -217,15 +218,10 @@ const Navbar = () => {
         onClose={setMobileMenuOpen}
       >
         <div className='fixed inset-0 z-10' />
-        <Dialog.Panel className='fixed inset-y-0 right-0 z-10 w-full overflow-y-auto bg-white px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10'>
+        <Dialog.Panel className='fixed inset-y-0 top-10 right-0 z-10 w-full overflow-y-auto bg-white px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10'>
           <div className='flex items-center justify-between'>
             <a href='/' className='-m-1.5 p-1.5'>
-              <span className='sr-only'>Your Company</span>
-              <img
-                className='h-8 w-auto'
-                src='https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600'
-                alt=''
-              />
+              <span className=''>Smart E-FIR</span>
             </a>
             <button
               type='button'
@@ -240,18 +236,18 @@ const Navbar = () => {
             <div className='-my-6 divide-y divide-gray-500/10'>
               <div className='space-y-2 py-6'>
 
-                <a
-                  href='/'
+                <NavLink
+                  to='/'
                   className='-mx-3 block rounded-lg py-2 px-3 text-base font-regular leading-7 text-gray-900 hover:bg-gray-50'
                 >
-                  Register Polise Station
-                </a>
-                <a
-                  href='/'
+                  Register Police Station
+                </NavLink>
+                <NavLink
+                  to='/admin'
                   className='-mx-3 block rounded-lg py-2 px-3 text-base font-regular leading-7 text-gray-900 hover:bg-gray-50'
                 >
                   Admin Panel
-                </a>
+                </NavLink>
                 <a
                   href='/'
                   className='-mx-3 block rounded-lg py-2 px-3 text-base font-regular leading-7 text-gray-900 hover:bg-gray-50'
@@ -264,32 +260,38 @@ const Navbar = () => {
                 >
                   Check Status
                 </a>
-                <a
-                  href='/contact'
+                <NavLink
+                  to='/contact'
                   className='-mx-3 block rounded-lg py-2 px-3 text-base font-regular leading-7 text-gray-900 hover:bg-gray-50'
                 >
                   Contact Us
-                </a>
+                </NavLink>
               </div>
               <div className='py-6'>
-                <a
-                  href='/register'
-                  className='-mx-3 block rounded-lg py-2.5 px-3 text-base font-regular leading-7 text-gray-900 hover:bg-gray-50'
-                >
-                  Sign Up
-                </a>
-                <a
-                  href='/login'
-                  className='-mx-3 block rounded-lg py-2.5 px-3 text-base font-regular leading-7 text-gray-900 hover:bg-gray-50'
-                >
-                  Sign In
-                </a>
-                <a
-                  href='/'
-                  className='-mx-3 block rounded-lg py-2.5 px-3 text-base font-regular leading-7 text-gray-900 hover:bg-gray-50'
-                >
-                  Profile
-                </a>
+                {!user && (
+                  <>
+                    <NavLink
+                      to='/register'
+                      className='-mx-3 block rounded-lg py-2.5 px-3 text-base font-regular leading-7 text-gray-900 hover:bg-gray-50'
+                    >
+                      Sign Up
+                    </NavLink>
+                    <NavLink
+                      to='/login'
+                      className='-mx-3 block rounded-lg py-2.5 px-3 text-base font-regular leading-7 text-gray-900 hover:bg-gray-50'
+                    >
+                      Sign In
+                    </NavLink>
+                  </>
+                )}
+                {user && (
+                  <NavLink
+                    to='/logout'
+                    className='-mx-3 block rounded-lg py-2.5 px-3 text-base font-regular leading-7 text-gray-900 hover:bg-gray-50'
+                  >
+                    Logout
+                  </NavLink>
+                )}
               </div>
             </div>
           </div>

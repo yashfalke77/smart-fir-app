@@ -5,9 +5,12 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import * as Yup from 'yup';
 import Datepicker from 'react-tailwindcss-datepicker';
 import { DateRangeType } from 'react-tailwindcss-datepicker/dist/types';
+import { useNavigate } from 'react-router-dom';
 import logo from '../assets/images/logo.png';
 import authImage from '../assets/images/auth.png';
 import { RegisterUser } from '../models/register.model';
+import authService from '../services/auth.service';
+import localStorageService from '../services/localStorage.service';
 
 const Register = () => {
   const registerSchema = Yup.object().shape({
@@ -38,24 +41,21 @@ const Register = () => {
   });
 
   const [loading, setLoading] = useState(false);
-  // const [dob, setDob] = useState({
-  //   startDate: null,
-  //   endDate: null,
-  // });
 
   const currentDate = new Date();
 
-  // const handleValueChange = (newValue: any) => {
-  //   setDob(newValue);
-  // };
+  const navigate = useNavigate();
 
-  const submitForm: SubmitHandler<RegisterUser> = (data) => {
-    // eslint-disable-next-line no-console
-    console.log({ ...data });
-    setLoading(true);
-    setTimeout(() => {
+  const submitForm: SubmitHandler<RegisterUser> = async (data) => {
+    try {
+      setLoading(true);
+      const userResponse = await authService.registerUser({ ...data, dob: data.dob.startDate, role: 'user' });
+      localStorageService.setJwt(userResponse.data.data.authToken);
       setLoading(false);
-    }, 4000);
+      navigate('/');
+    } catch (error) {
+      setLoading(false);
+    }
   };
 
   return (
@@ -82,7 +82,7 @@ const Register = () => {
             </div>
             <div>
               <label htmlFor='phone' className='block mb-2 text-sm font-regular text-gray-900 '>Phone Number</label>
-              <input {...register('phone')} type='phone' id='phone' className='bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-400 focus:border-primary-400 block w-full p-2.5 ' placeholder='8408965701' />
+              <input {...register('phone')} type='phone' maxLength={10} minLength={10} id='phone' className='bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-400 focus:border-primary-400 block w-full p-2.5 ' placeholder='8408965701' />
               <p className='text-red-600 text-xs mt-1'>{errors.phone?.message}</p>
             </div>
             <div>
@@ -127,7 +127,7 @@ const Register = () => {
             </div>
             <div>
               <label htmlFor='pincode' className='block mb-2 text-sm font-regular text-gray-900 '>Pincode</label>
-              <input {...register('pincode')} type='input' id='pincode' className='bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-400 focus:border-primary-400 block w-full p-2.5 ' placeholder='400000' />
+              <input {...register('pincode')} maxLength={6} minLength={6} type='input' id='pincode' className='bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-400 focus:border-primary-400 block w-full p-2.5 ' placeholder='400000' />
               <p className='text-red-600 text-xs mt-1'>{errors.pincode?.message}</p>
             </div>
             <div>
