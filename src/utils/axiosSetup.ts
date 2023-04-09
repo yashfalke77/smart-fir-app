@@ -1,6 +1,7 @@
 import {
   type AxiosError, type AxiosInstance, type InternalAxiosRequestConfig, type AxiosResponse,
 } from 'axios';
+import { toast } from 'react-hot-toast';
 import { type ResponseError } from '../models/response.model';
 /* eslint-disable no-console */
 
@@ -24,17 +25,13 @@ const onResponseError = async (error: AxiosError<ResponseError>): Promise<AxiosE
 
   // show toast an unexpected error occured when there is any issue of statuscode 500
   if (expectedError) {
-    console.log(expectedError);
-    // toast.error(error.response?.data.meta.message, {
-    //   toastId: 'api-error-toast',
-    //   position: 'bottom-center',
-    //   autoClose: 2000,
-    //   hideProgressBar: true,
-    //   closeOnClick: true,
-    //   draggable: true,
-    //   progress: undefined,
-    //   theme: 'dark',
-    // });
+    toast.error(error.response?.data.meta.message as string, {
+      style: {
+        borderRadius: '10px',
+        background: '#000',
+        color: '#fff',
+      },
+    });
   }
 
   console.error(`[response error] [${JSON.stringify(error)}]`);

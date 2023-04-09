@@ -5,7 +5,8 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import * as Yup from 'yup';
 import Datepicker from 'react-tailwindcss-datepicker';
 import { DateRangeType } from 'react-tailwindcss-datepicker/dist/types';
-import { useNavigate } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
+import toast from 'react-hot-toast';
 import logo from '../assets/images/logo.png';
 import authImage from '../assets/images/auth.png';
 import { RegisterUser } from '../models/register.model';
@@ -49,9 +50,16 @@ const Register = () => {
   const submitForm: SubmitHandler<RegisterUser> = async (data) => {
     try {
       setLoading(true);
-      const userResponse = await authService.registerUser({ ...data, dob: data.dob.startDate, role: 'user' });
+      const userResponse = await authService.registerUser({ ...data, dob: data.dob.startDate, role: 'admin' });
       localStorageService.setJwt(userResponse.data.data.authToken);
       setLoading(false);
+      toast.success('Welcome to smart fir', {
+        style: {
+          borderRadius: '10px',
+          background: '#000',
+          color: '#fff',
+        },
+      });
       navigate('/');
     } catch (error) {
       setLoading(false);
@@ -142,7 +150,7 @@ const Register = () => {
           <p className='text-sm mt-3'>
             alreday have an account?
             {' '}
-            <a className='text-primary-800 hover:underline' href='/login'>Login here</a>
+            <NavLink className='text-primary-800 hover:underline' to='/login'>Login here</NavLink>
           </p>
         </form>
       </section>

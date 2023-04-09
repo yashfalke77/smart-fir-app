@@ -3,7 +3,8 @@ import { Button } from 'primereact/button';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as Yup from 'yup';
-import { useNavigate } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
+import toast from 'react-hot-toast';
 import logo from '../assets/images/logo.png';
 import authImage from '../assets/images/auth.png';
 import { LoginUser } from '../models/login.model';
@@ -31,6 +32,13 @@ const Login = () => {
       const userResponse = await authService.loginUser({ ...data });
       localStorageService.setJwt(userResponse.data.data.token);
       setLoading(false);
+      toast.success('Welcome to smart fir', {
+        style: {
+          borderRadius: '10px',
+          background: '#000',
+          color: '#fff',
+        },
+      });
       navigate('/');
     } catch (error) {
       setLoading(false);
@@ -70,7 +78,7 @@ const Login = () => {
           <p className='text-sm mt-3'>
             don&apos;t have an account?
             {' '}
-            <a className='text-primary-800 hover:underline' href='/register'>Register here</a>
+            <NavLink className='text-primary-800 hover:underline' to='/register'>Register here</NavLink>
           </p>
 
         </form>

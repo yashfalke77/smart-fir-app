@@ -1,6 +1,7 @@
 import React from 'react';
 import { Route, Routes } from 'react-router-dom';
 import './App.scss';
+import { Toaster } from 'react-hot-toast';
 import Contact from './pages/Contact';
 import Home from './pages/Home';
 import Login from './pages/Login';
@@ -22,6 +23,10 @@ const App = () => (
       <Route path='/admin/users' element={<Users />} />
       <Route path='*' element={<PageNotFound />} />
     </Routes>
+    <Toaster
+      position='bottom-center'
+      reverseOrder={false}
+    />
   </div>
 );
 
