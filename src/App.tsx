@@ -41,7 +41,14 @@ const App = () => (
           </ProtectedAdminRoute>
         )}
       />
-      <Route path='/admin/users' element={<Users />} />
+      <Route
+        path='/admin/users'
+        element={(
+          <ProtectedAdminRoute>
+            <Users />
+          </ProtectedAdminRoute>
+        )}
+      />
       <Route path='*' element={<PageNotFound />} />
     </Routes>
     <Toaster
