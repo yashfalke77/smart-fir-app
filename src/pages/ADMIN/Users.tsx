@@ -1,7 +1,7 @@
 import React from 'react';
 import Sidebar from '../../Components/ADMIN/Sidebar';
 import Navbar from '../../Components/Navbar';
-import User from '../../Components/ADMIN/User';
+import User from '../../Components/ADMIN/Users/User';
 
 const Users = () => (
   <div>
