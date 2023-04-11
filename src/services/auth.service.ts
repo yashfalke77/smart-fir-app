@@ -8,4 +8,6 @@ export default {
   loginUser: async (userData: any) => apiService.post(`${apiUrl}/login`, userData),
 
   getAllUser: async () => apiService.get(apiUrl),
+
+  deleteUser: async (id: string | undefined) => apiService.delete(`${apiUrl}/${id}`),
 };
