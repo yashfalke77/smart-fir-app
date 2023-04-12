@@ -7,6 +7,7 @@ interface IStatus {
 }
 
 export interface IFir {
+  _id ?: string;
   subject: string;
   description: string;
   policeStation: PoliceStation;

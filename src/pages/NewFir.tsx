@@ -145,7 +145,7 @@ const NewFir = () => {
                     <select {...register('policeStation')} onChange={(e) => setValue('policeStation', e.target.value, { shouldValidate: true })} id='policeStation' className='bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 '>
                       <option value=''>Choose Police Station</option>
                       {stations.map((station) => (
-                        <option value={station._id}>{station.name}</option>
+                        <option key={station._id} value={station._id}>{station.name}</option>
                       ))}
                     </select>
                     <p className='text-red-600 text-xs mt-1'>{errors.policeStation?.message}</p>

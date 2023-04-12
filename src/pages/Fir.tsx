@@ -27,7 +27,7 @@ const Fir = () => {
           <h2 className='text-4xl tracking-tight font-semibold text-gray-900 mb-12'>Your Filed FIRs and Their Status</h2>
           <section className='flex flex-col'>
             {firs.map((fir) => (
-              <div className='bg-gray-50 flex justify-between p-6 mb-4 rounded'>
+              <div key={fir._id} className='bg-gray-50 flex justify-between p-6 mb-4 rounded'>
                 <div className='left'>
                   <h3 className='text-xl text-primary-800 mb-2'>{fir.subject}</h3>
                   <p className='text-sm'>
