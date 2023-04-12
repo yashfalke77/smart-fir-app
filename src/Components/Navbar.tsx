@@ -1,3 +1,4 @@
+/* eslint-disable complexity */
 import React, { Fragment, useState, useEffect } from 'react';
 import {
   Dialog, Menu, Popover, Transition,
@@ -35,12 +36,6 @@ const Navbar = () => {
       description: 'Your customers’ data will be safe and secure',
       href: '/',
       icon: FingerPrintIcon,
-    },
-    {
-      name: 'All Firs',
-      description: 'List of all firs that you filed',
-      href: '/fir',
-      icon: ChartBarIcon,
     },
   ];
 
@@ -111,6 +106,29 @@ const Navbar = () => {
                       </div>
                     </div>
                   ))}
+                  {user?.role === 'role' && (
+                    <div
+                      key='All Firs'
+                      className='group relative flex items-center gap-x-6 rounded-lg p-4 text-sm leading-6 hover:bg-gray-50'
+                    >
+                      <div className='flex h-11 w-11 flex-none items-center justify-center rounded-lg bg-gray-50 group-hover:bg-white'>
+                        <ChartBarIcon
+                          className='h-6 w-6 text-gray-600 group-hover:text-primary-800'
+                          aria-hidden='true'
+                        />
+                      </div>
+                      <div className='flex-auto'>
+                        <NavLink
+                          to='/fir'
+                          className='block font-regular text-gray-900'
+                        >
+                          All Firs
+                          <span className='absolute inset-0' />
+                        </NavLink>
+                        <p className='mt-1 text-gray-600'>List of all firs that you filed</p>
+                      </div>
+                    </div>
+                  )}
                   {user?.role === 'admin' && (
                     <div
                       key='admin panel'
@@ -185,12 +203,21 @@ const Navbar = () => {
             </Transition>
           </Popover>
 
-          <NavLink to='/fir/new' className='text-base font-regular leading-6 text-gray-900'>
-            File Fir
-          </NavLink>
-          <NavLink to='/fir' className='text-base font-regular leading-6 text-gray-900'>
-            Check Status
-          </NavLink>
+          {user?.role === 'user' && (
+            <>
+              <NavLink to='/fir/new' className='text-base font-regular leading-6 text-gray-900'>
+                File Fir
+              </NavLink>
+              <NavLink to='/fir' className='text-base font-regular leading-6 text-gray-900'>
+                Check Status
+              </NavLink>
+            </>
+          )}
+          {user?.role === 'authority' && (
+            <NavLink to='/fir/complaints' className='text-base font-regular leading-6 text-gray-900'>
+              FIR Complaints
+            </NavLink>
+          )}
           <a href='/contact' className='text-base font-regular leading-6 text-gray-900'>
             Contact Us
           </a>

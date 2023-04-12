@@ -16,6 +16,7 @@ import ProtectedAdminRoute from './Components/ADMIN/ProtectedAdminRoute';
 import PoliceStationList from './pages/AUTHORITY/PoliceStationList';
 import NewPoliceStation from './pages/AUTHORITY/NewPoliceStation';
 import NewFir from './pages/NewFir';
+import ProtectedAuthorityRoute from './Components/AUTHORITY/ProtectedAuthorityRoutee';
 
 const App = () => (
   <div>
@@ -44,8 +45,22 @@ const App = () => (
         )}
       />
       {/* Authority routes */}
-      <Route path='/police-station' element={<PoliceStationList />} />
-      <Route path='/police-station/new' element={<NewPoliceStation />} />
+      <Route
+        path='/police-station'
+        element={(
+          <ProtectedAuthorityRoute>
+            <PoliceStationList />
+          </ProtectedAuthorityRoute>
+        )}
+      />
+      <Route
+        path='/police-station/new'
+        element={(
+          <ProtectedAuthorityRoute>
+            <NewPoliceStation />
+          </ProtectedAuthorityRoute>
+        )}
+      />
       {/* admin routes */}
       <Route
         path='/admin'
