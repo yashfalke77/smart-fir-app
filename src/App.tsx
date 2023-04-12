@@ -15,6 +15,7 @@ import ProtectedRoute from './Components/ProtectedRoute';
 import ProtectedAdminRoute from './Components/ADMIN/ProtectedAdminRoute';
 import PoliceStationList from './pages/AUTHORITY/PoliceStationList';
 import NewPoliceStation from './pages/AUTHORITY/NewPoliceStation';
+import NewFir from './pages/NewFir';
 
 const App = () => (
   <div>
@@ -31,6 +32,14 @@ const App = () => (
         element={(
           <ProtectedRoute>
             <Fir />
+          </ProtectedRoute>
+        )}
+      />
+      <Route
+        path='/fir/new'
+        element={(
+          <ProtectedRoute>
+            <NewFir />
           </ProtectedRoute>
         )}
       />

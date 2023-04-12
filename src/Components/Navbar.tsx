@@ -9,6 +9,7 @@ import {
   FingerPrintIcon,
   SquaresPlusIcon,
   XMarkIcon,
+  ChartBarIcon,
 } from '@heroicons/react/24/outline';
 import { ChevronDownIcon } from '@heroicons/react/20/solid';
 import { Button } from 'primereact/button';
@@ -34,6 +35,12 @@ const Navbar = () => {
       description: 'Your customers’ data will be safe and secure',
       href: '/',
       icon: FingerPrintIcon,
+    },
+    {
+      name: 'All Firs',
+      description: 'List of all firs that you filed',
+      href: '/fir',
+      icon: ChartBarIcon,
     },
   ];
 
@@ -127,7 +134,7 @@ const Navbar = () => {
                       </div>
                     </div>
                   )}
-                  {(user?.role === 'authority' || user?.role === 'admin') && (
+                  {(user?.role === 'authority') && (
                     <div
                       key='Register Police Station'
                       className='group relative flex items-center gap-x-6 rounded-lg p-4 text-sm leading-6 hover:bg-gray-50'
@@ -150,7 +157,7 @@ const Navbar = () => {
                       </div>
                     </div>
                   )}
-                  {(user?.role === 'authority' || user?.role === 'admin') && (
+                  {(user?.role === 'authority') && (
                     <div
                       key='Police Stations List'
                       className='group relative flex items-center gap-x-6 rounded-lg p-4 text-sm leading-6 hover:bg-gray-50'
@@ -178,12 +185,12 @@ const Navbar = () => {
             </Transition>
           </Popover>
 
-          <NavLink to='/fir' className='text-base font-regular leading-6 text-gray-900'>
+          <NavLink to='/fir/new' className='text-base font-regular leading-6 text-gray-900'>
             File Fir
           </NavLink>
-          <a href='/' className='text-base font-regular leading-6 text-gray-900'>
+          <NavLink to='/fir' className='text-base font-regular leading-6 text-gray-900'>
             Check Status
-          </a>
+          </NavLink>
           <a href='/contact' className='text-base font-regular leading-6 text-gray-900'>
             Contact Us
           </a>

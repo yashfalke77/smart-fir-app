@@ -9,5 +9,7 @@ export default {
 
   getAllUser: async () => apiService.get(apiUrl),
 
+  getUserById: async (id: string | undefined) => apiService.get(`${apiUrl}/${id}`),
+
   deleteUser: async (id: string | undefined) => apiService.delete(`${apiUrl}/${id}`),
 };
