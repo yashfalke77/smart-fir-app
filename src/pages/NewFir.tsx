@@ -159,6 +159,13 @@ const NewFir = () => {
                 </div>
               </div>
             </div>
+            <div className='space-y-12 mt-10'>
+              <div className='border-b border-gray-900/10 pb-12'>
+                <h2 className='text-xl font-medium leading-7 text-gray-900'>Disclaimer</h2>
+                <p className='mt-4 text-sm leading-6 text-gray-600'>As per the prevailing laws, FIR of a major crime (′cognizable crimes like theft, burglary, motor vehicle theft, accident, chain-snatching, assault, rape, murder, attempt to commit murder, robbery, dacoity, extortion etc) can only be registered at a Police Station. Please contact your nearest Police Station for the same.</p>
+                <p className='mt-4 text-sm leading-6 text-gray-600'>This site shall only entertain complaints about minor crimes (′non-cognizable crimes′).Your complaint shall be referred to the concerned Police Station, where you may be called for further clarification and/or to give statement.</p>
+              </div>
+            </div>
 
             <div className='mt-6 flex items-center justify-end gap-x-6'>
               <Button loading={loading} label='File New Fir' icon='pi pi-check' className='text-base font-regular leading-6' />
