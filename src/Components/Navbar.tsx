@@ -16,6 +16,7 @@ import { ChevronDownIcon } from '@heroicons/react/20/solid';
 import { Button } from 'primereact/button';
 import { NavLink } from 'react-router-dom';
 import localStorageService from '../services/localStorage.service';
+import userImg from '../assets/images/user.png';
 
 function classNames(...classes: any[]) {
   return classes.filter(Boolean).join(' ');
@@ -225,25 +226,25 @@ const Navbar = () => {
         <div className='hidden  lg:flex lg:items-center lg:flex-1 lg:justify-end'>
           {!user && (
             <>
-              <a href='/login' className='text-base font-regular leading-6 text-gray-900 mr-8'>
+              <NavLink to='/login' className='text-base font-regular leading-6 text-gray-900 mr-8'>
                 Sign In
                 {' '}
                 <span aria-hidden='true'>&rarr;</span>
-              </a>
-              <a href='/register'>
+              </NavLink>
+              <NavLink to='/register'>
                 <Button label='Sign Up' className='text-base font-regular leading-6' />
-              </a>
+              </NavLink>
             </>
           )}
           {/* Profile dropdown */}
           {user && (
             <Menu as='div' className='relative ml-8'>
               <div>
-                <Menu.Button className='flex rounded-full bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800'>
+                <Menu.Button className='flex rounded-full text-sm focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800'>
                   <span className='sr-only'>Open user menu</span>
                   <img
                     className='h-10 w-10 rounded-full'
-                    src='https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80'
+                    src={userImg}
                     alt=''
                   />
                 </Menu.Button>
@@ -258,26 +259,6 @@ const Navbar = () => {
                 leaveTo='transform opacity-0 scale-95'
               >
                 <Menu.Items className='absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none'>
-                  <Menu.Item>
-                    {({ active }) => (
-                      <a
-                        href='/'
-                        className={classNames(active ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700')}
-                      >
-                        Your Profile
-                      </a>
-                    )}
-                  </Menu.Item>
-                  <Menu.Item>
-                    {({ active }) => (
-                      <a
-                        href='/'
-                        className={classNames(active ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700')}
-                      >
-                        Settings
-                      </a>
-                    )}
-                  </Menu.Item>
                   <Menu.Item>
                     {({ active }) => (
                       <NavLink
