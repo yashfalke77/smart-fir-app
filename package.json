@@ -12,6 +12,9 @@
     "prepare": "husky install"
   },
   "dependencies": {
+    "@drizzle/react-components": "^1.5.3",
+    "@drizzle/react-plugin": "^1.5.3",
+    "@drizzle/store": "^1.5.3",
     "@headlessui/react": "^1.7.13",
     "@heroicons/react": "^2.0.16",
     "@hookform/resolvers": "^3.0.0",
@@ -26,6 +29,7 @@
     "react-hot-toast": "^2.4.0",
     "react-router-dom": "^6.9.0",
     "react-tailwindcss-datepicker": "^1.5.1",
+    "truffle": "^5.8.4",
     "vite-plugin-svgr": "^2.4.0",
     "yup": "^1.0.2"
   },

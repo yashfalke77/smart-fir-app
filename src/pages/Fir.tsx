@@ -5,12 +5,18 @@ import { IFir } from '../models/fir.model';
 import firService from '../services/fir.service';
 import wrapAsyncFunction from '../utils/catchAsync';
 import Footer from '../Components/Footer';
+import localStorageService from '../services/localStorage.service';
+import authService from '../services/auth.service';
+import { UserModel } from '../models/user.model';
+import { PoliceStation } from '../models/policeStation.model';
+import policeStationService from '../services/policeStation.service';
 
 const Fir = () => {
   const [firs, setFirs] = useState<IFir[]>([]);
 
   const getFirs = async () => {
-    const FirResponse = await firService.getAllFirs();
+    const currentUser = localStorageService.getCurrentUser();
+    const FirResponse = await firService.getFirByUser(currentUser?._id);
     setFirs(FirResponse.data.data);
   };
 

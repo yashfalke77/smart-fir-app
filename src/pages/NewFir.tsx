@@ -17,7 +17,9 @@ import localStorageService from '../services/localStorage.service';
 import { IFirInput } from '../models/fir.model';
 import Loader from '../Components/Loader';
 
-const NewFir = () => {
+interface NewFirProp {drizzle: any}
+
+const NewFir = ({ drizzle }:NewFirProp) => {
   const [loading, setLoading] = useState(false);
   const [users, setUsers] = useState<UserModel>();
   const [stations, setStations] = useState<PoliceStation[]>([]);
@@ -49,10 +51,23 @@ const NewFir = () => {
     try {
       setLoading(true);
       const currentUser = localStorageService.getCurrentUser();
-      await firService.newFir({
+      const FIRData = await firService.newFir({
         ...data, user: currentUser?._id, status: [{ status: 'under investigation' }], isEnabled: true,
       });
+      const FirDetails = FIRData.data.data.fir;
+
       setLoading(false);
+
+      const contract = drizzle.contracts.EFIR;
+
+      const resp2 = await contract.methods.fileFIR(
+        FirDetails.subject,
+        users?.phone,
+        users?.email,
+        FirDetails.description,
+        FirDetails._id,
+      ).send();
+
       toast.success('Filed Fir successfully', {
         style: {
           borderRadius: '10px',

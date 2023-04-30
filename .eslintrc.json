@@ -77,6 +77,8 @@
     "unicorn/prefer-switch": "error",
     "unicorn/prevent-abbreviations": "off",
     "react/no-unknown-property": "off",
-    "react/prop-types": "off"
+    "react/prop-types": "off",
+    "@typescript-eslint/no-shadow": "off",
+    "@typescript-eslint/no-unused-vars": "off"
   }
 }
