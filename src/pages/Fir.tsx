@@ -32,39 +32,48 @@ const Fir = () => {
         <main className='px-52 py-20 h-screen'>
           <h2 className='text-4xl tracking-tight font-semibold text-gray-900 mb-12'>Your Filed FIRs and Their Status</h2>
           <section className='flex flex-col'>
-            {firs.map((fir) => (
-              <div key={fir._id} className='bg-gray-50 flex justify-between p-6 mb-4 rounded'>
-                <div className='left'>
-                  <h3 className='text-xl text-primary-800 mb-2'>{fir.subject}</h3>
-                  <p className='text-sm'>
-                    {fir.user.address.city}
-                    ,
-                    {' '}
-                    {fir.user.address.state}
-                  </p>
+            {[...firs].reverse().map((fir) => (
+              <div key={fir._id} className='bg-gray-50 p-6 mb-4 rounded'>
+                <div className='flex justify-between'>
+                  <div className='left'>
+                    <h3 className='text-xl text-primary-800 mb-2'>{fir.subject}</h3>
+                    <p className='text-sm'>
+                      {fir.user.address.city}
+                      ,
+                      {' '}
+                      {fir.user.address.state}
+                    </p>
+                  </div>
+                  <div className='right'>
+                    <h3 className='text-xl mb-2'>
+                      Status:
+                      {' '}
+                      {fir.status[fir.status.length - 1].status}
+                    </h3>
+                    <ul className='flex list-disc justify-end'>
+                      <li>
+                        <p className='text-sm mr-10'>
+                          Station -
+                          {' '}
+                          {fir.policeStation.area}
+                        </p>
+                      </li>
+                      <li>
+                        <p className='text-sm'>
+                          Applied on
+                          {' '}
+                          {fir.status[fir.status.length - 1].updatedAt.slice(0, 10)}
+                        </p>
+                      </li>
+                    </ul>
+                  </div>
                 </div>
-                <div className='right'>
-                  <h3 className='text-xl mb-2'>
-                    Status:
+                <div className='text-base mt-3'>
+                  <b>Transaction Hash:</b>
+                  <span className='text-primary-400'>
                     {' '}
-                    {fir.status[fir.status.length - 1].status}
-                  </h3>
-                  <ul className='flex list-disc justify-end'>
-                    <li>
-                      <p className='text-sm mr-10'>
-                        Station -
-                        {' '}
-                        {fir.policeStation.area}
-                      </p>
-                    </li>
-                    <li>
-                      <p className='text-sm'>
-                        Applied on
-                        {' '}
-                        {fir.status[fir.status.length - 1].updatedAt.slice(0, 10)}
-                      </p>
-                    </li>
-                  </ul>
+                    {fir.transactionHash}
+                  </span>
                 </div>
               </div>
             ))}

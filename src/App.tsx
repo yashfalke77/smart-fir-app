@@ -2,6 +2,7 @@ import React from 'react';
 import { Route, Routes } from 'react-router-dom';
 import './App.scss';
 import { Toaster } from 'react-hot-toast';
+// @ts-ignore
 import { DrizzleContext } from '@drizzle/react-plugin';
 import { Drizzle } from '@drizzle/store';
 import Contact from './pages/Contact';
@@ -22,6 +23,7 @@ import ProtectedAuthorityRoute from './Components/AUTHORITY/ProtectedAuthorityRo
 // @ts-ignore
 // @ts-ignore
 import efir from './solidity_contracts/EFIR.json';
+import FirComplaints from './pages/AUTHORITY/FirComplaints';
 
 const drizzleOptions = {
   contracts: [efir],
@@ -70,6 +72,14 @@ const App = () => {
                   element={(
                     <ProtectedAuthorityRoute>
                       <PoliceStationList />
+                    </ProtectedAuthorityRoute>
+                  )}
+                />
+                <Route
+                  path='/police-station/fir/:policeStationId'
+                  element={(
+                    <ProtectedAuthorityRoute>
+                      <FirComplaints />
                     </ProtectedAuthorityRoute>
                   )}
                 />

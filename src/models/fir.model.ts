@@ -17,6 +17,8 @@ export interface IFir {
   investigationOfficer?: string;
   createdAt: Date;
   updatedAt: Date;
+  transactionHash?: string;
+  FIRnumber?: number;
 }
 
 export interface IFirInput {

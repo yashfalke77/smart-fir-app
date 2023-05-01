@@ -7,7 +7,10 @@ export default {
 
   newFir: (data: any) => apiService.post(apiUrl, data),
 
-  updateFir: (data:any, id:any) => apiService.patch(`${apiUrl}/${id}`),
+  updateFir: (data:any, id:any) => apiService.patch(`${apiUrl}/${id}`, data),
 
   getFirByUser: async (id: string | undefined) => apiService.get(`${apiUrl}/user/${id}`),
+
+  getFirByPoliceStation: async (id: string | undefined) => apiService.get(`${apiUrl}/station/${id}`),
+
 };

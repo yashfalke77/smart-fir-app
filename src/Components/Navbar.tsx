@@ -215,8 +215,8 @@ const Navbar = () => {
             </>
           )}
           {user?.role === 'authority' && (
-            <NavLink to='/fir/complaints' className='text-base font-regular leading-6 text-gray-900'>
-              FIR Complaints
+            <NavLink to='/police-station' className='text-base font-regular leading-6 text-gray-900'>
+              Police Stations
             </NavLink>
           )}
           <a href='/contact' className='text-base font-regular leading-6 text-gray-900'>

@@ -52,7 +52,7 @@ const NewFir = ({ drizzle }:NewFirProp) => {
       setLoading(true);
       const currentUser = localStorageService.getCurrentUser();
       const FIRData = await firService.newFir({
-        ...data, user: currentUser?._id, status: [{ status: 'under investigation' }], isEnabled: true,
+        ...data, user: currentUser?._id, status: [{ status: 'FIR Registered' }], isEnabled: true,
       });
       const FirDetails = FIRData.data.data.fir;
 
@@ -68,6 +68,7 @@ const NewFir = ({ drizzle }:NewFirProp) => {
         FirDetails._id,
       ).send();
 
+      const transHash = await firService.updateFir({ transactionHash: resp2.events.FIRfiled.transactionHash, FIRnumber: resp2.events.FIRfiled.returnValues.FIRnumber }, FirDetails._id);
       toast.success('Filed Fir successfully', {
         style: {
           borderRadius: '10px',

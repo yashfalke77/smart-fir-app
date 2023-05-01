@@ -1,21 +1,33 @@
-import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { Link, useParams } from 'react-router-dom';
+import firService from '../../services/fir.service';
+import wrapAsyncFunction from '../../utils/catchAsync';
+import { IFir } from '../../models/fir.model';
 import Navbar from '../../Components/Navbar';
 import Footer from '../../Components/Footer';
-import { PoliceStation } from '../../models/policeStation.model';
-import policeStationService from '../../services/policeStation.service';
-import wrapAsyncFunction from '../../utils/catchAsync';
+import StatusModel from '../../Components/AUTHORITY/StatusModel';
 
-const PoliceStationList = () => {
-  const [policeStation, setPoliceStation] = useState<PoliceStation[]>([]);
+const FirComplaints = () => {
+  const [firs, setFirs] = useState<IFir[]>([]);
+  const [addStatus, setAddStatus] = useState(false);
+  const [statusFir, setStatusFir] = useState({
+    id: '',
+    previousStatus: '',
+  });
 
-  const getPoliceStations = async () => {
-    const policeStationResponse = await policeStationService.getAllPoliceStation();
-    setPoliceStation(policeStationResponse.data.data);
+  const handleUpdateStatus = (id: string, previousStatus: string) => {
+    setStatusFir({ id, previousStatus });
+    setAddStatus(true);
   };
 
-  useEffect(wrapAsyncFunction(getPoliceStations), []);
+  const { policeStationId } = useParams();
 
+  const getFirByPoliceStation = async () => {
+    const FirResponse = await firService.getFirByPoliceStation(policeStationId);
+    setFirs(FirResponse.data.data);
+  };
+
+  useEffect(wrapAsyncFunction(getFirByPoliceStation), []);
   return (
     <>
       <Navbar />
@@ -34,7 +46,13 @@ const PoliceStationList = () => {
                   <li>
                     <div className='flex items-center'>
                       <svg className='w-6 h-6 text-gray-400' fill='currentColor' viewBox='0 0 20 20' xmlns='http://www.w3.org/2000/svg'><path fill-rule='evenodd' d='M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z' clip-rule='evenodd' /></svg>
-                      <a href='/' className='ml-1 text-gray-700 hover:text-primary-600 md:ml-2 '>Police Stations</a>
+                      <a href='/police-station' className='ml-1 text-gray-700 hover:text-primary-600 md:ml-2 '>Police Stations</a>
+                    </div>
+                  </li>
+                  <li>
+                    <div className='flex items-center'>
+                      <svg className='w-6 h-6 text-gray-400' fill='currentColor' viewBox='0 0 20 20' xmlns='http://www.w3.org/2000/svg'><path fill-rule='evenodd' d='M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z' clip-rule='evenodd' /></svg>
+                      <a href='/' className='ml-1 text-gray-700 hover:text-primary-600 md:ml-2 '>FIR Complaints</a>
                     </div>
                   </li>
                   <li>
@@ -45,23 +63,7 @@ const PoliceStationList = () => {
                   </li>
                 </ol>
               </nav>
-              <h1 className='text-xl font-semibold text-gray-900 sm:text-2xl'>All Police Station Under Your Authority</h1>
-            </div>
-            <div className='sm:flex'>
-              <div className='items-center hidden mb-3 sm:flex sm:divide-x sm:divide-gray-100 sm:mb-0'>
-                <form className='lg:pr-3' action='#' method='GET'>
-                  <label htmlFor='station-search' className='sr-only'>Search</label>
-                  <div className='relative mt-1 lg:w-64 xl:w-96'>
-                    <input type='text' name='email' id='station-search' className='bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-400 focus:border-primary-400 block w-full p-2.5' placeholder='Search for police stations' />
-                  </div>
-                </form>
-              </div>
-              <div className='flex items-center ml-auto space-x-2 sm:space-x-3'>
-                <Link to='/police-station/new' className='inline-flex items-center justify-center w-1/2 px-3 py-2 text-sm font-medium text-center text-white rounded-lg bg-primary-400 hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 sm:w-auto'>
-                  <svg className='w-5 h-5 mr-2 -ml-1' fill='currentColor' viewBox='0 0 20 20' xmlns='http://www.w3.org/2000/svg'><path fill-rule='evenodd' d='M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z' clip-rule='evenodd' /></svg>
-                  Add Police Station
-                </Link>
-              </div>
+              <h1 className='text-xl font-semibold text-gray-900 sm:text-2xl'>All FIRs</h1>
             </div>
           </div>
         </div>
@@ -82,16 +84,19 @@ const PoliceStationList = () => {
                         Name
                       </th>
                       <th scope='col' className='p-4 text-xs font-medium text-left text-gray-500 uppercase '>
-                        Address
+                        Subject
+                      </th>
+                      <th scope='col' className='p-4 text-xs font-medium text-left text-gray-500 uppercase '>
+                        Status
+                      </th>
+                      <th scope='col' className='p-4 text-xs font-medium text-left text-gray-500 uppercase '>
+                        Phone No.
+                      </th>
+                      <th scope='col' className='p-4 text-xs font-medium text-left text-gray-500 uppercase '>
+                        City
                       </th>
                       <th scope='col' className='p-4 text-xs font-medium text-left text-gray-500 uppercase '>
                         Pincode
-                      </th>
-                      <th scope='col' className='p-4 text-xs font-medium text-left text-gray-500 uppercase '>
-                        Area
-                      </th>
-                      <th scope='col' className='p-4 text-xs font-medium text-left text-gray-500 uppercase '>
-                        In Charge Name
                       </th>
                       <th scope='col' className='p-4 text-xs font-medium text-left text-gray-500 uppercase '>
                         Actions
@@ -99,7 +104,7 @@ const PoliceStationList = () => {
                     </tr>
                   </thead>
                   <tbody className='bg-white divide-y divide-gray-200'>
-                    {policeStation.map((p) => (
+                    {firs.map((fir) => (
                       <tr className='hover:bg-gray-100'>
                         <td className='w-4 p-4'>
                           <div className='flex items-center'>
@@ -109,22 +114,26 @@ const PoliceStationList = () => {
                         </td>
                         <td className='flex items-center p-4 mr-12 space-x-6 whitespace-nowrap'>
                           <div className='text-sm font-normal text-gray-500 '>
-                            <div className='text-base font-medium text-gray-900 '>{p.name}</div>
-                            <div className='text-sm font-normal text-gray-500 '>{p.area}</div>
+                            <div className='text-base font-medium text-gray-900 '>{fir.user.name}</div>
+                            <div className='text-sm font-normal text-gray-500 '>
+                              FIR No:
+                              {fir.FIRnumber}
+                            </div>
                           </div>
                         </td>
-                        <td className='max-w-sm p-4 overflow-hidden text-base font-normal text-gray-500 truncate xl:max-w-xs '>{p.address}</td>
-                        <td className='p-4 text-base font-normal text-gray-900 whitespace-nowrap '>{p.pincode}</td>
-                        <td className='p-4 text-base font-normal text-gray-900 whitespace-nowrap '>{p.area}</td>
+                        <td className='max-w-sm p-4 overflow-hidden text-base font-normal text-gray-500 truncate xl:max-w-xs '>{fir.subject}</td>
+                        <td className='p-4 text-base font-normal text-gray-900 whitespace-nowrap '>{fir.status[fir.status.length - 1].status}</td>
+                        <td className='p-4 text-base font-normal text-gray-900 whitespace-nowrap '>{fir.user.phone}</td>
+                        <td className='p-4 text-base font-normal text-gray-900 whitespace-nowrap '>{fir.user.address.city}</td>
                         <td className='p-4 text-base font-normal text-gray-900 whitespace-nowrap '>
                           <div className='flex items-center'>
-                            {p.inChargeName}
+                            {fir.user.pincode}
                           </div>
                         </td>
                         <td className='p-4 text-base font-normal text-gray-900 whitespace-nowrap '>
-                          <Link to={`/police-station/fir/${p._id}`} className='inline-flex items-center justify-center w-1/2 px-3 py-2 text-sm font-medium text-center text-white rounded-lg bg-primary-400 hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 sm:w-auto'>
-                            View FIR
-                          </Link>
+                          <button type='button' onClick={() => (handleUpdateStatus(fir._id as string, fir.status[fir.status.length - 1].status))} className='inline-flex items-center justify-center w-1/2 px-3 py-2 text-sm font-medium text-center text-white rounded-lg bg-primary-400 hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 sm:w-auto'>
+                            Update FIR Status
+                          </button>
                         </td>
                       </tr>
                     ))}
@@ -135,9 +144,11 @@ const PoliceStationList = () => {
           </div>
         </div>
       </main>
+      <StatusModel open={addStatus} setOpen={setAddStatus} firId={statusFir} />
       <Footer />
     </>
+
   );
 };
 
-export default PoliceStationList;
+export default FirComplaints;
